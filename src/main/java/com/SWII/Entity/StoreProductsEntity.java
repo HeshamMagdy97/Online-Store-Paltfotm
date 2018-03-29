@@ -6,10 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class StoreProductsEntity implements Serializable{
 
 	/**
@@ -67,39 +70,3 @@ public class StoreProductsEntity implements Serializable{
 		super();
 	}
 }
-//package com.SWII.Entity;
-//
-//import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-//import javax.persistence.Id;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.OneToMany;
-//
-//@Entity
-//public class StoreProductsEntity {
-//	
-//	@Id
-//	@GeneratedValue (strategy = GenerationType.AUTO)
-//	int id;
-//
-//	@OneToMany
-//	@JoinColumn(name = "Store_id")
-//	private Store store;
-//	
-//	@OneToMany
-//	@JoinColumn(name = "Product_id")
-//	private Product product;
-//
-//	private Integer numberOfViews;
-//
-//	
-//	public StoreProductsEntity(Store store, Product product) {
-//		super();
-//		this.store = store;
-//		this.product = product;
-//		this.numberOfViews = 0;
-//
-//	}
-//
-//}

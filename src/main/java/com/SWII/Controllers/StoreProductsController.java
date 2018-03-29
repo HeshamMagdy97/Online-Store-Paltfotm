@@ -1,23 +1,37 @@
 package com.SWII.Controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.SWII.Entity.OnlineStoreEntity;
+import com.SWII.Entity.Store;
 import com.SWII.Entity.StoreProductsEntity;
-import com.SWII.Repositories.StoreProductsRepository;
+import com.SWII.Services.OnlineProductServices;
 
-@Controller
+@RestController
+@RequestMapping(value="/productsinstore")
 public class StoreProductsController {
 
 	@Autowired
-	StoreProductsRepository storeProductRepo;
+	OnlineProductServices storeProductService;
 	
-	public List<StoreProductsEntity> getNumberOfViews(String storeId){
-		List<StoreProductsEntity> views = new ArrayList<>();
-		views = storeProductRepo.findBystores(storeId);
-		return views;
+	@RequestMapping(value="/{storeId}",method=RequestMethod.GET)
+	public List<StoreProductsEntity> getStoreProducts(@PathVariable("storeId") String storeId ){
+		//@toDo Store ya H
+		Store x = new OnlineStoreEntity();
+		x.setStoreId(storeId);
+		return null; //storeProductService.getStoreProduct(x);
 	}
+	
+//	public List<StoreProductsEntity> getNumberOfViews(String storeId){
+//		List<StoreProductsEntity> views = new ArrayList<>();
+//		views = storeProductRepo.findBystores(storeId);
+//		return views;
+//	}
+	
 }

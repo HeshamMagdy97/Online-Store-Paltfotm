@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.SWII.Entity.CustomerEntity;
+
+import com.SWII.Entity.Product;
+
 import com.SWII.Services.CutomerServices;
 
 
@@ -54,6 +57,26 @@ public class CustomerController {
 		}else {
 			return "Wrong";
 		}
-    	
 	}
+    
+    @RequestMapping(value="/home",  method=RequestMethod.GET)
+    public String showProducts(Model model , @ModelAttribute Product product) {
+    	return "Buy";
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

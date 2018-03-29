@@ -13,5 +13,4 @@ public class OnlineStoreEntity  extends Store{
 	public OnlineStoreEntity() {
 		super();
 	}
-
 }

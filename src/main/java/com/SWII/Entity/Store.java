@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Store {
-
 	@Id 
 	private String storeId;
 
