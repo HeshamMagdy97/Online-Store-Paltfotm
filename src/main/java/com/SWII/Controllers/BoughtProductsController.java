@@ -1,5 +1,9 @@
 package com.SWII.Controllers;
 
-public class BoughtProductsController {
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+public class BoughtProductsController {
+	
+	
 }
