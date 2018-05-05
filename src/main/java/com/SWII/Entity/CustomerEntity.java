@@ -4,9 +4,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class CustomerEntity extends UserEntity {
@@ -16,9 +14,6 @@ public class CustomerEntity extends UserEntity {
 
 	@OneToMany(mappedBy = "customers", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<BoughtProductsEntity> customers;
-
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "customer")
-	private CartEntity cart;
 
 	public CustomerEntity(String email, String password, String userName, String fristName, String secoundName,
 			Set<BoughtProductsEntity> customers) {

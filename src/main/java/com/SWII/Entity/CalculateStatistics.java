@@ -1,6 +1,6 @@
 package com.SWII.Entity;
 
-public class CalculateStatistics implements Istatistics{
+public class CalculateStatistics{
 
 	public int min() {
 		// TODO Auto-generated method stub
