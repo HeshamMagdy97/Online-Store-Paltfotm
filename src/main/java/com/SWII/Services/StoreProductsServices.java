@@ -35,7 +35,7 @@ public class StoreProductsServices {
 		 return true;
 	}	
 	
-	public boolean update(StoreProductsEntity entity) {
+	public boolean updateProduct(StoreProductsEntity entity) {
 		if(storeServices.getStoreByName(entity.getStores().getName()).getStatus() == false || !storeProductRepo.existsById(entity.getId()))
 			return false;
 		 storeProductRepo.save(entity);
