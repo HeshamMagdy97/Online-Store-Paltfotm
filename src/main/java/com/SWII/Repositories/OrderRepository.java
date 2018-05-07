@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.SWII.Entity.CustomerEntity;
 import com.SWII.Entity.OrderEntity;
+import com.SWII.Entity.UserEntity;
 
 public interface OrderRepository extends CrudRepository<OrderEntity,Integer>  {
-	public List<OrderEntity> findByUser(CustomerEntity userId);
+	public List<OrderEntity> findByUser(UserEntity userId);
+	
 }

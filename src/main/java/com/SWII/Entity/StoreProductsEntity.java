@@ -1,7 +1,9 @@
 package com.SWII.Entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +12,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -33,19 +36,27 @@ public class StoreProductsEntity implements Serializable{
 	@JoinColumn(name = "product_id")	
 	private ProductEntity products;
 	
+	@OneToMany(mappedBy = "boughBroduct", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<OrderProductEntity> boughBroduct;
+	
 	private Integer numberOfViews;
 	private Double price;
 	private Integer quantaty;
 
-	public StoreProductsEntity(int id, StoreEntity stores, ProductEntity products, Integer numberOfViews, Double price,
-			Integer quantaty) {
+
+	public StoreProductsEntity(int id, StoreEntity stores, ProductEntity products, Set<OrderProductEntity> boughBroduct,
+			Integer numberOfViews, Double price, Integer quantaty) {
 		super();
+		this.id = id;
 		this.stores = stores;
 		this.products = products;
+		this.boughBroduct = boughBroduct;
 		this.numberOfViews = numberOfViews;
 		this.price = price;
 		this.quantaty = quantaty;
 	}
+
+
 
 	public StoreProductsEntity() {
 		super();
@@ -102,6 +113,18 @@ public class StoreProductsEntity implements Serializable{
 
 	public void setNumberOfViews(Integer numberOfViews) {
 		this.numberOfViews = numberOfViews;
+	}
+
+
+
+	public Set<OrderProductEntity> getBoughBroduct() {
+		return boughBroduct;
+	}
+
+
+
+	public void setBoughBroduct(Set<OrderProductEntity> boughBroduct) {
+		this.boughBroduct = boughBroduct;
 	}
 
 }

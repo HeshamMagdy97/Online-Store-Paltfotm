@@ -22,28 +22,34 @@ public class OrderEntity {
 
 	private Date deliveryDate;
 	private Date orderDate;
-
+	
 	private boolean checkout;
+	
+	private double totalPrice;
+
 
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<OrderProductEntity> products;
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "customer_id", nullable = false)
-	private CustomerEntity user;
+	private UserEntity user;
 
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<OrderEntity> order;
 
-	public OrderEntity(int orderID, Date deliveryDate, Date orderDate, Set<OrderProductEntity> products,
-			CustomerEntity user, boolean checkout) {
+
+	public OrderEntity(int orderID, Date deliveryDate, Date orderDate, boolean checkout, double totalPrice,
+			Set<OrderProductEntity> products, UserEntity user, Set<OrderEntity> order) {
 		super();
 		this.orderID = orderID;
 		this.deliveryDate = deliveryDate;
 		this.orderDate = orderDate;
+		this.checkout = checkout;
+		this.totalPrice = totalPrice;
 		this.products = products;
 		this.user = user;
-		this.checkout = checkout;
+		this.order = order;
 	}
 
 	public OrderEntity() {
@@ -103,12 +109,22 @@ public class OrderEntity {
 		this.products = products;
 	}
 
-	public CustomerEntity getUser() {
+	public UserEntity getUser() {
 		return user;
 	}
 
-	public void setUser(CustomerEntity user) {
+	public void setUser(UserEntity user) {
 		this.user = user;
 	}
+
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+	
+	
 
 }

@@ -16,17 +16,22 @@ public class OrderProductEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "product_id")
-	private BoughtProductsEntity boughBroduct;
+	private StoreProductsEntity boughBroduct;
  
 	@ManyToOne
 	@JoinColumn(name = "order_id")
-	private CartEntity order;
+	private OrderEntity order;
+	
+	private int quantaty;
 
-	public OrderProductEntity(int id, BoughtProductsEntity boughBroduct, CartEntity order) {
+	
+
+	public OrderProductEntity(int id, BoughtProductsEntity boughBroduct, OrderEntity order, int quantaty) {
 		super();
 		this.id = id;
 		this.boughBroduct = boughBroduct;
 		this.order = order;
+		this.quantaty = quantaty;
 	}
 
 	public int getId() {
@@ -37,7 +42,7 @@ public class OrderProductEntity {
 		this.id = id;
 	}
 
-	public BoughtProductsEntity getBoughBroduct() {
+	public StoreProductsEntity getBoughBroduct() {
 		return boughBroduct;
 	}
 
@@ -45,12 +50,21 @@ public class OrderProductEntity {
 		this.boughBroduct = boughBroduct;
 	}
 
-	public CartEntity getOrder() {
+	public OrderEntity getOrder() {
 		return order;
 	}
 
-	public void setOrder(CartEntity order) {
+	public void setOrder(OrderEntity order) {
 		this.order = order;
 	}
+
+	public int getQuantaty() {
+		return quantaty;
+	}
+
+	public void setQuantaty(int quantaty) {
+		this.quantaty = quantaty;
+	}
+	
 	
 }
