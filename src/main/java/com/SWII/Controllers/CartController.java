@@ -20,6 +20,4 @@ public class CartController {
 	public boolean Buy(CustomerEntity userId) {
 		return cartService.proceed(cartService.getAllOrders(userId));
 	}
-	
-	
 }

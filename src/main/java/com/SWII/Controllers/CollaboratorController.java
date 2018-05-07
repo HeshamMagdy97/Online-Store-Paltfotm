@@ -19,4 +19,6 @@ public class CollaboratorController {
 	public boolean addCollaborator(@RequestBody CollaboratorsEntity collaborator) {
 		return collaboratorSevice.saveCollaborator(collaborator);
 	}
+	
+	
 }

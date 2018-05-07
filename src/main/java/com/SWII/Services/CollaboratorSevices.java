@@ -14,5 +14,5 @@ public class CollaboratorSevices {
 	
 	public boolean saveCollaborator(CollaboratorsEntity collaborator) {
 		return 	collaboratorRepo.save(collaborator) != null;
-	}
+	}	
 }
