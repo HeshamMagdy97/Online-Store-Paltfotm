@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -24,6 +23,8 @@ public class OrderEntity {
 	private Date deliveryDate;
 	private Date orderDate;
 
+	private boolean checkout;
+
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<OrderProductEntity> products;
 
@@ -33,17 +34,16 @@ public class OrderEntity {
 
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<OrderEntity> order;
-	
 
-	
 	public OrderEntity(int orderID, Date deliveryDate, Date orderDate, Set<OrderProductEntity> products,
-			CustomerEntity user) {
+			CustomerEntity user, boolean checkout) {
 		super();
 		this.orderID = orderID;
 		this.deliveryDate = deliveryDate;
 		this.orderDate = orderDate;
 		this.products = products;
 		this.user = user;
+		this.checkout = checkout;
 	}
 
 	public OrderEntity() {
@@ -52,6 +52,23 @@ public class OrderEntity {
 		this.orderDate = null;
 		this.products = null;
 		this.user = null;
+		this.checkout = false;
+	}
+
+	public boolean isCheckout() {
+		return checkout;
+	}
+
+	public void setCheckout(boolean checkout) {
+		this.checkout = checkout;
+	}
+
+	public Set<OrderEntity> getOrder() {
+		return order;
+	}
+
+	public void setOrder(Set<OrderEntity> order) {
+		this.order = order;
 	}
 
 	public int getOrderID() {
