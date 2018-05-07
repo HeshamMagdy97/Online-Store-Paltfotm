@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.SWII.Entity.StoreOwnerEntity;
 
-public interface StoreOwnerRepository extends CrudRepository<StoreOwnerEntity,String> {
+public interface StoreOwnerRepository extends CrudRepository<StoreOwnerEntity,Integer> {
 
 }

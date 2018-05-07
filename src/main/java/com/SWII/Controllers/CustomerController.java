@@ -1,25 +1,33 @@
 package com.SWII.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import com.SWII.Entity.CustomerEntity;
-
-import com.SWII.Entity.Product;
-
+import com.SWII.Entity.ProductEntity;
 import com.SWII.Services.CutomerServices;
 
 
-@Controller
+@RestController
+@CrossOrigin
 @RequestMapping(value="/customer")
 public class CustomerController {
 	
 	@Autowired 
 	CutomerServices customerService;
+	@RequestMapping(value="/signin",method= RequestMethod.POST)
+	public boolean SignIn(String name,String password) {
+		System.out.println("email"+" "+name+" "+"password"+" "+password);
+		System.out.println();
+		System.out.println();System.out.println();
+		System.out.println();System.out.println();System.out.println();System.out.println();
+
+		if(customerService.loadUserByUserName(name, password)){
+			return true;
+		}
+		return false;
+	}
 
 	@RequestMapping(value="/Register", method=RequestMethod.GET)
 	public String registerForm(Model model) {
@@ -60,7 +68,7 @@ public class CustomerController {
 	}
     
     @RequestMapping(value="/home",  method=RequestMethod.GET)
-    public String showProducts(Model model , @ModelAttribute Product product) {
+    public String showProducts(Model model , @ModelAttribute ProductEntity product) {
     	return "Buy";
     }
     

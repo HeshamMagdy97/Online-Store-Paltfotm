@@ -26,35 +26,73 @@ public class StoreProductsEntity implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "store_id")
-	private Store stores;
+	private StoreEntity stores;
 
 	
 	@ManyToOne
 	@JoinColumn(name = "product_id")	
-	private Product products;
+	private ProductEntity products;
 	
 	private Integer numberOfViews;
+	private Double price;
+	private Integer quantaty;
 
-	public StoreProductsEntity(Store stores, Product products, Integer numberOfViews) {
+	public StoreProductsEntity(int id, StoreEntity stores, ProductEntity products, Integer numberOfViews, Double price,
+			Integer quantaty) {
 		super();
 		this.stores = stores;
 		this.products = products;
 		this.numberOfViews = numberOfViews;
+		this.price = price;
+		this.quantaty = quantaty;
 	}
 
-	public Store getStores() {
+	public StoreProductsEntity() {
+		super();
+		this.numberOfViews = 0;
+		this.price = 0.0;
+		this.quantaty = 0;
+	}
+	
+	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public Integer getQuantaty() {
+		return quantaty;
+	}
+
+	public void setQuantaty(Integer quantaty) {
+		this.quantaty = quantaty;
+	}
+
+	public StoreEntity getStores() {
 		return stores;
 	}
 
-	public void setStores(Store stores) {
+	public void setStores(StoreEntity stores) {
 		this.stores = stores;
 	}
 
-	public Product getProducts() {
+	public ProductEntity getProducts() {
 		return products;
 	}
 
-	public void setProducts(Product products) {
+	public void setProducts(ProductEntity products) {
 		this.products = products;
 	}
 
@@ -66,7 +104,4 @@ public class StoreProductsEntity implements Serializable{
 		this.numberOfViews = numberOfViews;
 	}
 
-	public StoreProductsEntity() {
-		super();
-	}
 }

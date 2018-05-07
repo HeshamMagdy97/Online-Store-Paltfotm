@@ -20,6 +20,14 @@ public class CutomerServices {
 			return true;
 		}
 	}
+	public boolean loadUserByUserName(String userName, String password) {
+
+		if (customerRepo.existsByUserName(userName)&&customerRepo.existsByPassword(password)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 	public CustomerEntity getCustomerByUserName(String userName,String password) {
 		CustomerEntity customer=customerRepo.findById(userName).get();

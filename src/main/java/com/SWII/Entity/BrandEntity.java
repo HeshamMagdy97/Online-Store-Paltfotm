@@ -7,8 +7,8 @@ import javax.persistence.Id;
 public class BrandEntity {
 	
 	@Id
-	String name;
-	String category;
+	private String name;
+	private String category;
 	public BrandEntity(String name, String category) {
 		super();
 		this.name = name;

@@ -1,7 +1,5 @@
 package com.SWII.Controllers;
 
-import java.util.Set;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.SWII.Entity.OfflineStoreEntity;
-import com.SWII.Entity.OnlineStoreEntity;
-import com.SWII.Entity.Store;
 import com.SWII.Entity.StoreOwnerEntity;
 import com.SWII.Repositories.StoreOwnerRepository;
 
@@ -34,7 +29,7 @@ public class StoreOwnerController {
 		StoreOwnerEntity owner = (StoreOwnerEntity) session.getAttribute("owner");
 		if (owner == null) {
 			model.addAttribute("storeOwner", new StoreOwnerEntity());
-			if (!storeOwnerRepo.existsById(storeOwner.getUserName())) {
+			if (!storeOwnerRepo.existsById(storeOwner.getUserId())) {
 				storeOwnerRepo.save(storeOwner);
 				session.setAttribute("owner", storeOwner);
 				return "StoreOwnerPanel";
@@ -59,20 +54,12 @@ public class StoreOwnerController {
 		}
 	}
 
-	/********************************************/
-	@RequestMapping(value = "/addStore", method = RequestMethod.GET)
-	public String AddStore(Model model, OnlineStoreEntity onlineStore, OfflineStoreEntity offlineStore) {
-		model.addAttribute("onlineStore", onlineStore);
-		model.addAttribute("offlineStore", offlineStore);
-		return "AddStore";
-	}
-
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	public String SignIn(Model model, @ModelAttribute StoreOwnerEntity storeOwner, HttpSession session) {
 		StoreOwnerEntity owner = (StoreOwnerEntity) session.getAttribute("owner");
 		if (owner == null) {
 			model.addAttribute("storeOwner", new StoreOwnerEntity());
-			StoreOwnerEntity storeOwnerFormdb = storeOwnerRepo.findById(storeOwner.getUserName()).get();
+			StoreOwnerEntity storeOwnerFormdb = storeOwnerRepo.findById(storeOwner.getUserId()).get();
 			System.out.println(storeOwner.getPassword() + "----" + storeOwnerFormdb.getPassword());
 			if (storeOwnerFormdb.getPassword().equals(storeOwner.getPassword())) {
 				session.setAttribute("storeOwner",storeOwnerFormdb);
@@ -84,33 +71,4 @@ public class StoreOwnerController {
 			return "na signed in ya 7iwaaan";
 		}
 	}
-
-	/******************************************************************/
-	@RequestMapping(method = RequestMethod.GET)
-	public String displayStores(Model model, HttpSession session) {
-		Set<Store> stores; /** = 7aga ma btrg3 stores eli b id el store owner **/
-		model.addAttribute("stores", new OnlineStoreEntity());
-		return "";
-
-	}
-
-	/******************************************************************/
-	// /******************************************************************
-	// /*@RequestMapping(method = RequestMethod.GET)
-	// public String displayStores(Model model,HttpSession session) {
-	// Set<Store> stores; /** = 7aga ma btrg3 stores eli b id el store owner**/
-	// model.addAttribute("stores", new );
-	// return "";
-	//
-	// }\
-	// ******************************************************************/
-
-	// @RequestMapping(method = RequestMethod.GET)
-	// public String ShowStatistics(Model model
-	// , @ModelAttribute StoreOwnerEntity storeOwne, HttpSession session) {
-	//
-	// Store store = (Store) session.getAttribute("store");
-	// store.getNumberOfView();
-	// return "";
-	// }
 }
