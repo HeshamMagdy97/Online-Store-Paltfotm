@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.SWII.Entity.AddProductHistory;
 import com.SWII.Entity.AddProductHistoryServices;
 import com.SWII.Entity.CollaboratorsEntity;
+import com.SWII.Entity.ProductEntity;
 import com.SWII.Entity.StoreEntity;
 import com.SWII.Entity.StoreProductsEntity;
 import com.SWII.Entity.UpdateRemoveHistory;
@@ -47,6 +48,26 @@ public class CollaboratorController {
 	public boolean addProduct(@RequestBody StoreProductsEntity product,int collID){
 		if(storeProductService.saveProduct(product)==true) {
 			addProductHistoryService.save(new AddProductHistory(product,collaboratorSevice.load(collID), collID));
+			return true;
+		}
+		return false;
+	}
+	 
+	@RequestMapping(value = "/updateproduct", method = RequestMethod.POST)
+	public boolean updateProduct(@RequestBody StoreProductsEntity product,int collID) {
+		if(storeProductService.saveProduct(product) == true) {
+			updateRemoveService.save(new UpdateRemoveHistory(product.getId(),product.getStores(),
+					new ProductEntity(),product.getNumberOfViews(),product.getPrice(),product.getQuantaty(),collaboratorSevice.load(collID)));
+			return true;
+		}
+		return false;
+	}
+	
+	@RequestMapping(value = "/deleteproduct", method = RequestMethod.POST)
+	public boolean deleteProduct(@RequestBody StoreProductsEntity product,int collID) {
+		if(storeProductService.removeProduct(product) == true) {
+			updateRemoveService.save(new UpdateRemoveHistory(product.getId(),product.getStores(),
+					new ProductEntity(),product.getNumberOfViews(),product.getPrice(),product.getQuantaty(),collaboratorSevice.load(collID)));
 			return true;
 		}
 		return false;
