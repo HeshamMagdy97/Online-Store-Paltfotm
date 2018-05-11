@@ -33,6 +33,7 @@ public class AdminServices {
 		System.out.println(brand.getName()+"---"+brand.getCategory());
 		return brandServices.addBrand(brand);
 	}
+	
 	public boolean approveStore(String storeName) {
 		StoreEntity store=storeServices.getStoreByName(storeName);
 		if(store != null) {
