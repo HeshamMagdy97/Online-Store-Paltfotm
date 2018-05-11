@@ -7,9 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.SWII.Entity.BoughtProductsEntity;
 import com.SWII.Entity.StoreEntity;
+import com.SWII.Entity.UserEntity;
 import com.SWII.Repositories.BoughtProductsRepository;
 
-@Service
+@Service  
 public class BoughtProductsServices {
 	@Autowired
 	BoughtProductsRepository boughtProductsRepo;
@@ -21,5 +22,11 @@ public class BoughtProductsServices {
 
 	public List<BoughtProductsEntity> getBoughtwProduct(StoreEntity storeId) {
 		return boughtProductsRepo.findBystores(storeId);
+	}
+	
+	public boolean isFirstTime(UserEntity userId) {
+		if(boughtProductsRepo.findByCustomers(userId) != null)
+			return false;
+		return true;
 	}
 }

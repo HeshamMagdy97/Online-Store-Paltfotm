@@ -29,8 +29,8 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/addBrand", method = RequestMethod.POST)
-	public boolean approveStore(BrandEntity brand) {
-		return adminService.addPrand(brand);
+	public boolean addBrand(BrandEntity brand) {
+		return adminService.addBrand(brand);
 	}
 
 	@RequestMapping(value = "/approveStore", method = RequestMethod.POST)

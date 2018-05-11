@@ -1,15 +1,12 @@
 package com.SWII.Entity;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -17,44 +14,54 @@ public class CartEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int cartId;
+	private int id;
 
-	@OneToMany(mappedBy = "orders", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<OrderEntity> orders;
-
+	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "customer_id", nullable = false)
 	private CustomerEntity user;
+	
+	
+	@ManyToOne
+	private OrderEntity order;
+	
+	double totalPrice;
+	
+	
 
-	public CartEntity(int cartId, Set<OrderEntity> orders, CustomerEntity user) {
-		super();
-		this.cartId = cartId;
-		this.orders = orders;
-		this.user = user;
+	public CartEntity(int id, OrderEntity order, double totalPrice) {
+		this.id = id;
+		this.order = order;
+		this.totalPrice = totalPrice;
+	}
+	
+	public CartEntity() {
+		this.order = null;
+		this.totalPrice = 0.0;
 	}
 
-	public int getCartId() {
-		return cartId;
+	public double getTotalPrice() {
+		return totalPrice;
 	}
 
-	public void setCartId(int cartId) {
-		this.cartId = cartId;
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
-	public CustomerEntity getUser() {
-		return user;
+	public int getId() {
+		return id;
 	}
 
-	public void setUser(CustomerEntity user) {
-		this.user = user;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public Set<OrderEntity> getOrders() {
-		return orders;
+	public OrderEntity getOrder() {
+		return order;
 	}
 
-	public void setOrders(Set<OrderEntity> orders) {
-		this.orders = orders;
+	public void setOrder(OrderEntity order) {
+		this.order = order;
 	}
 
 }

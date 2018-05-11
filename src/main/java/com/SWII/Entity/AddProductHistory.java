@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class AddProductHistory {
 	@ManyToOne
-	ProductEntity products;
+	StoreProductsEntity products;
 
 	@ManyToOne
 	CollaboratorsEntity collaborato;
@@ -18,18 +18,18 @@ public class AddProductHistory {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int addProductId;
 
-	public AddProductHistory(ProductEntity products, CollaboratorsEntity collaborato, int addProductId) {
+	public AddProductHistory(StoreProductsEntity products, CollaboratorsEntity collaborato, int addProductId) {
 		super();
 		this.products = products;
 		this.collaborato = collaborato;
 		this.addProductId = addProductId;
 	}
 
-	public ProductEntity getProducts() {
+	public StoreProductsEntity getProducts() {
 		return products;
 	}
 
-	public void setProducts(ProductEntity products) {
+	public void setProducts(StoreProductsEntity products) {
 		this.products = products;
 	}
 

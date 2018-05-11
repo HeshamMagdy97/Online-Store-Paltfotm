@@ -25,38 +25,18 @@ public class ProductEntity {
     @OneToMany(mappedBy = "stores", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<StoreProductsEntity> stores;
 
-    @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<AddProductHistory> addHistory;
-    
-    
-
-	public ProductEntity(int productId, Set<StoreProductsEntity> stores, Set<AddProductHistory> addHistory, String name,
-			Double lowPrice, Double highPrice, String brand, String category, Type type) {
-		super();
-		this.productId = productId;
-		this.stores = stores;
-		this.addHistory = addHistory;
-		this.name = name;
-		this.lowPrice = lowPrice;
-		this.highPrice = highPrice;
-		this.brand = brand;
-		this.category = category;
-		this.type = type;
-	}
-
-	public Set<AddProductHistory> getAddHistory() {
-		return addHistory;
-	}
-
-	public void setAddHistory(Set<AddProductHistory> addHistory) {
-		this.addHistory = addHistory;
-	}
 	String name;
 	Double lowPrice;
 	Double highPrice;
 	String brand;
 	String category;
 	private Type type;
+    
+    
+
+
+
+
 
 	public ProductEntity(int productId, Set<StoreProductsEntity> stores, String name, Double lowPrice, Double highPrice,
 			String brand, String category, Type type) {
@@ -70,7 +50,7 @@ public class ProductEntity {
 		this.category = category;
 		this.type = type;
 	}
-	
+
 	
 	public ProductEntity() {
 		super();

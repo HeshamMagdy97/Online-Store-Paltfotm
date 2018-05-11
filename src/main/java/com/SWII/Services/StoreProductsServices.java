@@ -28,4 +28,19 @@ public class StoreProductsServices {
 		return storeProductRepo.save(entity) != null;
 	}
 	
+	public boolean removeProduct(StoreProductsEntity entity) {
+		if(storeServices.getStoreByName(entity.getStores().getName()).getStatus() == false)
+			return false;
+		 storeProductRepo.delete(entity);
+		 return true;
+	}	
+	
+	public boolean updateProduct(StoreProductsEntity entity) {
+		if(storeServices.getStoreByName(entity.getStores().getName()).getStatus() == false || !storeProductRepo.existsById(entity.getId()))
+			return false;
+		 storeProductRepo.save(entity);
+		 return true;
+	}
+	
+	
 }

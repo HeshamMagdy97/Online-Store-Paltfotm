@@ -8,11 +8,15 @@ import com.SWII.Repositories.CollaboratorRepository;
 
 @Service
 public class CollaboratorSevices {
-	
+
 	@Autowired
 	CollaboratorRepository collaboratorRepo;
-	
+
 	public boolean saveCollaborator(CollaboratorsEntity collaborator) {
-		return 	collaboratorRepo.save(collaborator) != null;
+		return collaboratorRepo.save(collaborator) != null;
+	}
+
+	public CollaboratorsEntity load(int id) {
+		return collaboratorRepo.findById(id).get();
 	}
 }
